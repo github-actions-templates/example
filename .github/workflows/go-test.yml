@@ -2,6 +2,8 @@ name: Go Test
 on:
   push:
     branches: [ main ]
+    paths:
+      - "go/**"
 env:
   GOPROXY: "https://proxy.golang.org"
 
@@ -19,7 +21,7 @@ jobs:
       - run: go version
 
       - name: Run tests
-        run: go test ./... -v -covermode=atomic -race -coverprofile=coverage.txt
+        run: cd go && go test ./... -v -covermode=atomic -race -coverprofile=coverage.txt
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3

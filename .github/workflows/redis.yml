@@ -1,10 +1,10 @@
-
 name: Redis
 on: push
 
 jobs:
   runner-job:
     runs-on: ubuntu-latest
+    container: redis
 
     services:
       redis:
@@ -14,5 +14,4 @@ jobs:
 
     steps:
       - name: Run Redis
-        run: |
-          redis-cli ping
+        run: redis-cli ping

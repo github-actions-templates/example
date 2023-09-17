@@ -3,7 +3,7 @@ on:
   schedule:
     - cron: "0 0 * * *"
     - cron: "0 12 * * *"
-    - cron: "42 4 * * *"
+    - cron: "45 6 * * *"
 
 env:
   GOPROXY: "https://proxy.golang.org"

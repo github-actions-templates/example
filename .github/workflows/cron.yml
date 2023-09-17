@@ -1,0 +1,28 @@
+name: Cron
+on:
+  schedule:
+    - cron: "0 0 * * *"
+    - cron: "0 12 * * *"
+    - cron: "35 14 * * *"
+
+env:
+  GOPROXY: "https://proxy.golang.org"
+
+jobs:
+  test:
+    name: "go test"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Go
+        uses: actions/setup-go@v3
+      - run: go version
+
+      - name: Run tests
+        run: cd go && go test ./... -v -covermode=atomic -race -coverprofile=coverage.txt
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3

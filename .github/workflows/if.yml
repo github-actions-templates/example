@@ -1,0 +1,22 @@
+name: Test Env
+
+on:
+  workflow_dispatch:
+    inputs:
+      test-jobs:
+        description: '测试 Env'
+
+env:
+  ENVIRONMENT: prod
+
+jobs:
+  dev:
+    runs-on: ubuntu-latest
+    if: ${{ env.ENVIRONMENT }} == 'prod'
+    steps:
+      - run: echo The env is ${{ env.ENVIRONMENT }}
+
+  prod:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo The env is ${{ env.ENVIRONMENT }}

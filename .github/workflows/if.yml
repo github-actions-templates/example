@@ -1,10 +1,10 @@
-name: Test Env
+name: Test IF
 
 on:
   workflow_dispatch:
     inputs:
       test-jobs:
-        description: '测试 Env'
+        description: '测试 IF'
 
 env:
   ENVIRONMENT: prod

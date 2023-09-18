@@ -13,11 +13,8 @@ jobs:
   dev:
     runs-on: ubuntu-latest
     steps:
-      - run: echo The env is ${{ env.ENVIRONMENT }}
+      - run: echo The dev env is ${{ env.ENVIRONMENT }}
         if: env.ENVIRONMENT == 'dev'
 
-  prod:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo The env is ${{ env.ENVIRONMENT }}
+      - run: echo The prod env is ${{ env.ENVIRONMENT }}
         if: env.ENVIRONMENT == 'prod'

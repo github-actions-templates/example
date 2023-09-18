@@ -9,8 +9,6 @@ on:
 env:
   ENVIRONMENT: prod
 
-var
-
 jobs:
   dev:
     runs-on: ubuntu-latest

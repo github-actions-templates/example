@@ -12,7 +12,7 @@ env:
 jobs:
   dev:
     runs-on: ubuntu-latest
-    if: ${{ env.ENVIRONMENT }} == 'prod'
+    if: env.ENVIRONMENT == 'prod'
     steps:
       - run: echo The env is ${{ env.ENVIRONMENT }}
 

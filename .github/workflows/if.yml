@@ -9,15 +9,17 @@ on:
 env:
   ENVIRONMENT: prod
 
+var
+
 jobs:
   dev:
     runs-on: ubuntu-latest
-    if: ${{ env.ENVIRONMENT == 'dev' }}
     steps:
       - run: echo The env is ${{ env.ENVIRONMENT }}
+        if: env.ENVIRONMENT == 'dev'
 
   prod:
     runs-on: ubuntu-latest
-    if: ${{ env.ENVIRONMENT == 'prod' }}
     steps:
       - run: echo The env is ${{ env.ENVIRONMENT }}
+        if: env.ENVIRONMENT == 'prod'

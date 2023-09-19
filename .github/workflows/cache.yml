@@ -5,27 +5,22 @@ on:
 
 jobs:
   test:
-    name: "go test"
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
       - uses: actions/cache@v3
-        id: cache-go
+        id: cache-test
         with:
-          path: ~/go/pkg/mod
-          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          path: ~/test
+          key: ${{ runner.os }}-cache-test
           restore-keys: |
-            ${{ runner.os }}-go-
+            ${{ runner.os }}-cache-
 
-      - name: Install Go
-        uses: actions/setup-go@v3
-      - run: go version
+      - run: sleep 5 && echo "Hello world" > ~/test/1.log
+        if: steps.cache-test.outputs.cache-hit != 'true'
 
-      - name: Run tests
-        run: cd go && go test ./... -v -covermode=atomic -race -coverprofile=coverage.txt
+      - run: sleep 5 && echo "Hello world" > ~/test/2.log
+        if: steps.cache-test.outputs.cache-hit != 'true'
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+      - run: |
+          cat ~/test/*.log

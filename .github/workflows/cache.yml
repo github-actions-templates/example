@@ -11,16 +11,16 @@ jobs:
       - uses: actions/cache@v3
         id: cache-test
         with:
-          path: ~/test
+          path: ~/
           key: ${{ runner.os }}-cache-test
           restore-keys: |
             ${{ runner.os }}-cache-
 
-      - run: sleep 5 && echo "Hello world" > ~/test/1.log
+      - run: sleep 5 && echo "Hello world" > ~/1.log
         if: steps.cache-test.outputs.cache-hit != 'true'
 
-      - run: sleep 5 && echo "Hello world" > ~/test/2.log
+      - run: sleep 5 && echo "Hello world" > ~/2.log
         if: steps.cache-test.outputs.cache-hit != 'true'
 
       - run: |
-          cat ~/test/*.log
+          cat ~/*.log
